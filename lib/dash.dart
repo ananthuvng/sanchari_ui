@@ -11,6 +11,7 @@ class _HomeState extends State<Home> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
               height: height,
             ),
             Positioned(
-              bottom: height * .015,
+              bottom: height * -.078,
               right: width * -.08,
               child: Container(
                 width: width * .35,
