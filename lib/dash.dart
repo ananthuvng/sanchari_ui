@@ -117,18 +117,39 @@ class _HomeState extends State<Home> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      height: 90,
-                      width: 90,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image(
-                          image: NetworkImage(
-                              'https://www.telegraph.co.uk/content/dam/travel/Spark/brand-usa-2017/la-at-night.jpg?imwidth=450'),
-                          fit: BoxFit.fill,
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 90,
+                        width: 90,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image(
+                            image: NetworkImage(
+                                'https://www.telegraph.co.uk/content/dam/travel/Spark/brand-usa-2017/la-at-night.jpg?imwidth=450'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Hey Sarah!',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'SFProDisplay',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                          height: MediaQuery.of(context).size.height * 3,
+                          child: _tabSection(context)),
+                    ),
                   ],
                 ),
               ),
@@ -138,4 +159,74 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+Widget _tabSection(BuildContext context) {
+  return DefaultTabController(
+    length: 3,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.only(left: 30, right: 30),
+            child: TabBar(
+                indicatorColor: Color.fromRGBO(0, 0, 0, 1),
+                unselectedLabelColor: Colors.grey,
+                labelColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.label,
+                tabs: [
+                  Tab(
+                    child: Text(
+                      'Location',
+                      style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'SFProDisplay'),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'Plan',
+                      style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'SFProDisplay'),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'Friends',
+                      style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'SFProDisplay'),
+                    ),
+                  ),
+                ]),
+          ),
+        ),
+        Expanded(
+          flex: 5,
+          child: Container(
+            //Add this to give height
+            height: MediaQuery.of(context).size.height * 3,
+            child: Flexible(
+              child: TabBarView(children: [
+                Container(
+                  child: Text("Home Body"),
+                ),
+                Container(
+                  child: Text("Articles Body"),
+                ),
+                Container(
+                  child: Text("User Body"),
+                ),
+              ]),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
